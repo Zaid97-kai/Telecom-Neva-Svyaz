@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DemoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DemoDBModelStoreContainer">
+    <EntitySet Name="CrmRequests" EntityType="DemoDBModel.Store.CrmRequests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmploeeEvents" EntityType="DemoDBModel.Store.EmploeeEvents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="DemoDBModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SpbDistricts" EntityType="DemoDBModel.Store.SpbDistricts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubscriberAdress" EntityType="DemoDBModel.Store.SubscriberAdress" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscribers" EntityType="DemoDBModel.Store.Subscribers" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CrmRequests_Subscribers" Association="DemoDBModel.Store.FK_CrmRequests_Subscribers">
+      <End Role="Subscribers" EntitySet="Subscribers" />
+      <End Role="CrmRequests" EntitySet="CrmRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubscriberAdress_Subscribers" Association="DemoDBModel.Store.FK_SubscriberAdress_Subscribers">
+      <End Role="Subscribers" EntitySet="Subscribers" />
+      <End Role="SubscriberAdress" EntitySet="SubscriberAdress" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CrmRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="SubscriberId" Type="int" Nullable="false" />
+    <Property Name="Service" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ServiceKindOf" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="ServiceType" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ProblemDescription" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="CloseDate" Type="datetime" Nullable="true" />
+    <Property Name="ProblemType" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmploeeEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmploeeType" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Decription" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Number" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SpbDistricts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SubscriberAdress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubscriberId" Type="int" Nullable="true" />
+    <Property Name="Prefix_code" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Raion" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Prefix" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="House" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Subscribers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubscriberNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="FIO" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Birthday" Type="datetime" Nullable="true" />
+    <Property Name="Phone" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="PlaceOfResidence" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="ResidentialAddress" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SeriesAndPassportNumber" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DepartmentCode" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="IssuedBy" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="PassportIssueDate" Type="datetime" Nullable="true" />
+    <Property Name="NumberOfContract" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DateOfConclusionContract" Type="datetime" Nullable="true" />
+    <Property Name="ContractType" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ReasonForTermination" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="PersonalAccount" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Services" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ContractTerminationDate" Type="datetime" Nullable="true" />
+    <Property Name="EquipmentRent" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SerialNumberOfEquipment" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_CrmRequests_Subscribers">
+    <End Role="Subscribers" Type="DemoDBModel.Store.Subscribers" Multiplicity="1" />
+    <End Role="CrmRequests" Type="DemoDBModel.Store.CrmRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscribers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CrmRequests">
+        <PropertyRef Name="SubscriberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubscriberAdress_Subscribers">
+    <End Role="Subscribers" Type="DemoDBModel.Store.Subscribers" Multiplicity="0..1" />
+    <End Role="SubscriberAdress" Type="DemoDBModel.Store.SubscriberAdress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscribers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubscriberAdress">
+        <PropertyRef Name="SubscriberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CrmRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="SubscriberId" Type="Int32" Nullable="false" />
+          <Property Name="Service" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceKindOf" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProblemDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CloseDate" Type="DateTime" Precision="3" />
+          <Property Name="ProblemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subscribers" Relationship="Self.FK_CrmRequests_Subscribers" FromRole="CrmRequests" ToRole="Subscribers" />
+        </EntityType>
+        <EntityType Name="EmploeeEvents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmploeeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SpbDistricts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SubscriberAdress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscriberId" Type="Int32" />
+          <Property Name="Prefix_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Raion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subscribers" Relationship="Self.FK_SubscriberAdress_Subscribers" FromRole="SubscriberAdress" ToRole="Subscribers" />
+        </EntityType>
+        <EntityType Name="Subscribers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscriberNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfResidence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ResidentialAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesAndPassportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="NumberOfContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfConclusionContract" Type="DateTime" Precision="3" />
+          <Property Name="ContractType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonForTermination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContractTerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="EquipmentRent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumberOfEquipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CrmRequests" Relationship="Self.FK_CrmRequests_Subscribers" FromRole="Subscribers" ToRole="CrmRequests" />
+          <NavigationProperty Name="SubscriberAdress" Relationship="Self.FK_SubscriberAdress_Subscribers" FromRole="Subscribers" ToRole="SubscriberAdress" />
+        </EntityType>
+        <Association Name="FK_CrmRequests_Subscribers">
+          <End Role="Subscribers" Type="Self.Subscribers" Multiplicity="1" />
+          <End Role="CrmRequests" Type="Self.CrmRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CrmRequests">
+              <PropertyRef Name="SubscriberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriberAdress_Subscribers">
+          <End Role="Subscribers" Type="Self.Subscribers" Multiplicity="0..1" />
+          <End Role="SubscriberAdress" Type="Self.SubscriberAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriberAdress">
+              <PropertyRef Name="SubscriberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CrmRequests" EntityType="Self.CrmRequests" />
+          <EntitySet Name="EmploeeEvents" EntityType="Self.EmploeeEvents" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="SpbDistricts" EntityType="Self.SpbDistricts" />
+          <EntitySet Name="SubscriberAdress" EntityType="Self.SubscriberAdress" />
+          <EntitySet Name="Subscribers" EntityType="Self.Subscribers" />
+          <AssociationSet Name="FK_CrmRequests_Subscribers" Association="Self.FK_CrmRequests_Subscribers">
+            <End Role="Subscribers" EntitySet="Subscribers" />
+            <End Role="CrmRequests" EntitySet="CrmRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriberAdress_Subscribers" Association="Self.FK_SubscriberAdress_Subscribers">
+            <End Role="Subscribers" EntitySet="Subscribers" />
+            <End Role="SubscriberAdress" EntitySet="SubscriberAdress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoDBModelStoreContainer" CdmEntityContainer="DemoDBEntities">
+    <EntitySetMapping Name="CrmRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.CrmRequests)">
+        <MappingFragment StoreEntitySet="CrmRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="ServiceKindOf" ColumnName="ServiceKindOf" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ProblemDescription" ColumnName="ProblemDescription" />
+          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+          <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploeeEvents">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.EmploeeEvents)">
+        <MappingFragment StoreEntitySet="EmploeeEvents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmploeeType" ColumnName="EmploeeType" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.Employees)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpbDistricts">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.SpbDistricts)">
+        <MappingFragment StoreEntitySet="SpbDistricts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubscriberAdress">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.SubscriberAdress)">
+        <MappingFragment StoreEntitySet="SubscriberAdress">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+          <ScalarProperty Name="Prefix_code" ColumnName="Prefix_code" />
+          <ScalarProperty Name="Raion" ColumnName="Raion" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="House" ColumnName="House" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscribers">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoDBModel.Subscribers)">
+        <MappingFragment StoreEntitySet="Subscribers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubscriberNumber" ColumnName="SubscriberNumber" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PlaceOfResidence" ColumnName="PlaceOfResidence" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="SeriesAndPassportNumber" ColumnName="SeriesAndPassportNumber" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="PassportIssueDate" ColumnName="PassportIssueDate" />
+          <ScalarProperty Name="NumberOfContract" ColumnName="NumberOfContract" />
+          <ScalarProperty Name="DateOfConclusionContract" ColumnName="DateOfConclusionContract" />
+          <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+          <ScalarProperty Name="ReasonForTermination" ColumnName="ReasonForTermination" />
+          <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="ContractTerminationDate" ColumnName="ContractTerminationDate" />
+          <ScalarProperty Name="EquipmentRent" ColumnName="EquipmentRent" />
+          <ScalarProperty Name="SerialNumberOfEquipment" ColumnName="SerialNumberOfEquipment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

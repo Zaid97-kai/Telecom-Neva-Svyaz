@@ -1,0 +1,9 @@
+﻿<Application x:Class="ООО__Телеком_Нева_Связь_.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ООО__Телеком_Нева_Связь_"
+             StartupUri="Views/Windows/MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

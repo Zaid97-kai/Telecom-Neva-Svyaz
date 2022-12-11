@@ -1,0 +1,128 @@
+﻿<Window x:Class="ООО__Телеком_Нева_Связь_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ООО__Телеком_Нева_Связь_"
+        mc:Ignorable="d"
+        Title="Учет и паспортизация активов" MinHeight="1000" MinWidth="1200" Icon="/Resources/Icons/image.ico">
+
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="Menu">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="#4A67F7"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" >
+            <Image  Source="/Resources/Icons/Лого ТНС.jpg" Margin="10"/>
+
+            <Button x:Name="BtnSubscribers" Content="Абоненты" Style="{StaticResource Menu}" Click="BtnSubscribers_Click"/>
+
+            <Button x:Name="BtnEquipment" Content="Управление оборудованием" Style="{StaticResource Menu}" Visibility="Collapsed" Click="BtnEquipment_Click"/>
+
+            <Button x:Name="BtnActives" Content="Активы" Style="{StaticResource Menu}" Visibility="Collapsed" Click="BtnActives_Click"/>
+
+            <Button x:Name="BtnBilling" Content="Биллинг" Style="{StaticResource Menu}" Visibility="Collapsed" Click="BtnBilling_Click"/>
+
+            <Button x:Name="BtnSupport" Content="Поддержка пользователей" Style="{StaticResource Menu}" Visibility="Collapsed" Click="BtnSupport_Click"/>
+
+            <Button x:Name="BtnCRM" Content="CRM" Style="{StaticResource Menu}" Visibility="Collapsed" Click="BtnCRM_Click"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel>
+                    <TextBlock x:Name="TbMode" Text="Абоненты ТНС" FontSize="40" Margin="20"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="auto">
+                        <StackPanel>
+                            <Grid Width="350" HorizontalAlignment="Left" Margin="5">
+                                <TextBlock Text="Поиск по фамилии"/>
+                                <TextBox x:Name="TbSurname" Width="200" HorizontalAlignment="Right" TextChanged="TbSurname_TextChanged"/>
+                            </Grid>
+
+                            <Grid Width="350" HorizontalAlignment="Left" Margin="5">
+                                <TextBlock Text="Поиск по лицевому счету"/>
+                                <TextBox x:Name="TbAccount" Width="200" HorizontalAlignment="Right" TextChanged="TbAccount_TextChanged"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel>
+                            <Grid Width="300" HorizontalAlignment="Left" Margin="5">
+                                <TextBlock Text="Поиск по району"/>
+                                <TextBox x:Name="TbDistrict" Width="200" HorizontalAlignment="Right" TextChanged="TbDistrict_TextChanged"/>
+                            </Grid>
+
+                            <Grid Width="300" HorizontalAlignment="Left" Margin="5">
+                                <TextBlock Text="Поиск по улице"/>
+                                <ComboBox x:Name="ComboStreet" DisplayMemberPath="FullAdress" Width="200" HorizontalAlignment="Right" SelectionChanged="ComboStreet_SelectionChanged"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+              
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox x:Name="ComboUsers" DisplayMemberPath="FIO" Height="30" Width="200" SelectionChanged="ComboUsers_SelectionChanged"/>
+
+                    <Image x:Name="ImageUser" Source="/Resources/EmploeeIcons/Фото для заглушки при отсутствии фото сотрудника.jpg" Width="100" Height="100"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ListView x:Name="LvSubscribers">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Номер абонента"  DisplayMemberBinding="{Binding SubscriberNumber}" />
+                            <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FIO}" />
+                            <GridViewColumn Header="Номер договора" DisplayMemberBinding="{Binding NumberOfContract}" />
+                            <GridViewColumn Header="Лицевой счет"  DisplayMemberBinding="{Binding PersonalAccount}" />
+                            <GridViewColumn Header="Перечень услуг"  DisplayMemberBinding="{Binding Services}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+                <Grid Grid.Row="1">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <RadioButton IsChecked="True" Content="Активные" GroupName="Rb" Checked="RadioButton_Checked"/>
+                        <RadioButton Content="Неактивные" Margin="50,0,0,0" GroupName="Rb" Checked="RadioButton_Checked"/>
+                        <RadioButton Content="Все договоры" Margin="50,0,0,0" GroupName="Rb" Checked="RadioButton_Checked"/>
+                    </StackPanel>
+                </Grid>
+                
+                <ListView x:Name="LvEvents" Grid.Column="1" Grid.RowSpan="2" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="250"  Height="100" Background="#B5DEFA">
+                                <TextBlock Text="{Binding Decription}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
